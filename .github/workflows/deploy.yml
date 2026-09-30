@@ -1,0 +1,57 @@
+name: Deploy
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+# One deploy at a time; a newer push cancels the older run.
+concurrency:
+  group: deploy
+  cancel-in-progress: true
+
+env:
+  DEPLOY_HOST: 188.120.242.151
+  DEPLOY_USER: crmapp
+  # Public host key of the server, so the runner connects only to it.
+  DEPLOY_KNOWN_HOST: "188.120.242.151 ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIPJv+hbK84EOh3PugOOjMtjnoLK0psA3YG4/22XKHqu7"
+  SITE_URL: https://crm.vprod.app/
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+
+      - uses: pnpm/action-setup@v6
+
+      - uses: actions/setup-node@v7
+        with:
+          node-version: 24
+          cache: pnpm
+
+      - run: pnpm install --frozen-lockfile
+
+      - run: pnpm build
+
+      - name: Upload dist to server
+        env:
+          SSH_KEY: ${{ secrets.DEPLOY_SSH_KEY }}
+        run: |
+          install -m 700 -d ~/.ssh
+          printf '%s\n' "$SSH_KEY" > ~/.ssh/deploy_key
+          chmod 600 ~/.ssh/deploy_key
+          printf '%s\n' "$DEPLOY_KNOWN_HOST" > ~/.ssh/known_hosts
+          # The key is locked on the server to rsync into /var/www/landing,
+          # so the destination path is relative to that folder.
+          rsync -rtz --delete --chmod=D755,F644 \
+            -e "ssh -i ~/.ssh/deploy_key -o IdentitiesOnly=yes" \
+            dist/ "$DEPLOY_USER@$DEPLOY_HOST:/"
+
+      - name: Check the live page is the new build
+        run: |
+          status=$(curl -sS -o live.html -w '%{http_code}' "$SITE_URL")
+          echo "HTTP $status"
+          test "$status" = 200
+          cmp live.html dist/index.html
+          echo "Live index.html matches this build"
