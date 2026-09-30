@@ -1,0 +1,45 @@
+@import "tailwindcss";
+@import "./tokens.css";
+
+@layer base {
+  html {
+    line-height: normal;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  body {
+    background-color: var(--color-bg);
+    color: var(--color-ink);
+    font-family: var(--font-sans);
+  }
+
+  p {
+    text-wrap: pretty;
+  }
+}
+
+/* Centered content column: 640px on mobile/tablet, 1200px from lg. */
+@utility page-container {
+  margin-inline: auto;
+  width: 100%;
+  max-width: calc(var(--container-page-md) + --spacing(10));
+  padding-inline: --spacing(5);
+
+  @variant lg {
+    max-width: calc(var(--container-page) + --spacing(30));
+    padding-inline: --spacing(15);
+  }
+}
+
+/* Decorative radial glow; strength is set via --glow-strength. */
+@utility glow {
+  position: absolute;
+  pointer-events: none;
+  border-radius: 50%;
+  background: radial-gradient(
+    circle,
+    color-mix(in srgb, var(--color-glow) calc(var(--glow-strength, 0.3) * 100%), transparent),
+    transparent 62%
+  );
+}

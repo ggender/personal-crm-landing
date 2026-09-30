@@ -1,0 +1,27 @@
+---
+import SectionLabel from "./SectionLabel.astro";
+
+const items = [
+  "Контакты разбросаны по телефону, мессенджерам и почте",
+  "Через полгода не помнишь, откуда знаешь человека и о чем с ним говорил",
+  "Договоренности забываются, а напомнить о себе неловко",
+];
+---
+
+<section class="border-t border-line" aria-labelledby="problem-title">
+  <div class="page-container flex flex-col gap-6 py-14 lg:gap-9 lg:py-16">
+    <SectionLabel id="problem-title">Знакомо?</SectionLabel>
+    <ol class="flex flex-col gap-3 lg:grid lg:grid-cols-3 lg:gap-4">
+      {
+        items.map((text, i) => (
+          <li class="flex items-start gap-3 rounded-16 bg-strip px-4 py-4.5 lg:flex-col lg:gap-7 lg:rounded-20 lg:p-7">
+            <span class="w-9 shrink-0 font-serif text-num font-medium text-accent italic lg:w-auto lg:text-num-lg" aria-hidden="true">
+              {i + 1}
+            </span>
+            <p class="min-w-0 flex-1 font-serif text-problem font-medium lg:text-problem-lg">{text}</p>
+          </li>
+        ))
+      }
+    </ol>
+  </div>
+</section>

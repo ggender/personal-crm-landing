@@ -1,0 +1,21 @@
+---
+interface Props {
+  variant?: "header" | "footer";
+}
+
+const { variant = "header" } = Astro.props;
+---
+
+{
+  variant === "header" ? (
+    <div class="flex items-center gap-2.5 font-serif text-20 font-medium italic lg:text-24">
+      <span class="block size-2.5 rounded-full bg-accent lg:size-3" aria-hidden="true" />
+      Личная CRM
+    </div>
+  ) : (
+    <div class="flex items-center gap-2 font-serif text-16 font-medium text-subtle italic lg:text-18">
+      <span class="block size-2 rounded-full bg-accent" aria-hidden="true" />
+      Личная CRM
+    </div>
+  )
+}

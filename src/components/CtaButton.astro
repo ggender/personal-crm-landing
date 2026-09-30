@@ -1,0 +1,39 @@
+---
+import { APP_URL } from "../config";
+
+interface Props {
+  size?: "sm" | "lg";
+  href?: string;
+  class?: string;
+}
+
+const { size = "lg", href = APP_URL, class: className } = Astro.props;
+const base =
+  "bg-ink font-semibold text-bg hover:opacity-88 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent";
+---
+
+{
+  size === "sm" ? (
+    <a href={href} class:list={[base, "rounded-12 px-4.5 py-3 text-15", className]}>
+      Открыть CRM
+    </a>
+  ) : (
+    <a
+      href={href}
+      class:list={[
+        base,
+        "flex h-14 items-center justify-between rounded-14 pr-1.75 pl-5 text-17",
+        "lg:h-15.5 lg:justify-start lg:gap-8 lg:rounded-15 lg:pr-2.25 lg:pl-6.5 lg:text-18",
+        className,
+      ]}
+    >
+      Открыть CRM
+      <span
+        class="flex size-10 items-center justify-center rounded-10 bg-accent text-18 text-white lg:size-11 lg:rounded-11 lg:text-20"
+        aria-hidden="true"
+      >
+        →
+      </span>
+    </a>
+  )
+}

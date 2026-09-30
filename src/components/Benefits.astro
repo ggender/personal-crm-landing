@@ -1,0 +1,25 @@
+---
+import Glow from "./Glow.astro";
+import SectionLabel from "./SectionLabel.astro";
+
+const item =
+  "border-bg/15 py-5 font-serif text-benefit font-medium not-first:border-t first:pt-0 last:pb-0 " +
+  "lg:border-t lg:border-bg/20 lg:pt-6 lg:pb-0 lg:text-benefit-lg lg:first:pt-6";
+---
+
+<section class="relative overflow-hidden bg-ink text-bg" aria-labelledby="benefits-title">
+  <Glow
+    class="-top-30 -right-45 h-95 w-105 lg:-top-55 lg:-right-50 lg:h-155 lg:w-190"
+    strength={0.32}
+  />
+  <div class="page-container relative flex flex-col gap-6 py-14 lg:gap-10 lg:py-16">
+    <SectionLabel id="benefits-title" class="text-accent-on-dark">Что вы получаете</SectionLabel>
+    <ul class="flex flex-col lg:grid lg:grid-cols-3 lg:gap-10">
+      <li class={item}><p>Помните контекст каждого знакомства</p></li>
+      <li class={item}>
+        <p>Возвращаетесь к договоренностям <em class="text-accent-on-dark">вовремя</em></p>
+      </li>
+      <li class={item}><p>Приходите на встречу, зная, о чем говорили в прошлый раз</p></li>
+    </ul>
+  </div>
+</section>

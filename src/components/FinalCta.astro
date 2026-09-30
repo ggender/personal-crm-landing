@@ -1,0 +1,23 @@
+---
+import CtaButton from "./CtaButton.astro";
+import Glow from "./Glow.astro";
+import Logo from "./Logo.astro";
+---
+
+<section class="relative overflow-hidden" aria-labelledby="final-title">
+  <Glow
+    class="top-0 -left-25 h-105 w-140 lg:left-1/2 lg:-ml-112.5 lg:h-130 lg:w-225"
+    strength={0.25}
+  />
+  <div
+    class="page-container relative flex flex-col gap-5.5 pt-16 pb-10 lg:items-center lg:gap-8 lg:pt-18 lg:pb-8 lg:text-center"
+  >
+    <h2 id="final-title" class="font-serif text-h2 font-medium text-balance lg:max-w-h2 lg:text-h2-lg">
+      Не теряйте людей, которых знаете <em class="text-accent">лично</em>
+    </h2>
+    <CtaButton />
+    <footer class="mt-7 border-t border-line pt-5 lg:mt-18 lg:self-stretch lg:pt-6">
+      <Logo variant="footer" />
+    </footer>
+  </div>
+</section>

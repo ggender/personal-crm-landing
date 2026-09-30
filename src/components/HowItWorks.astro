@@ -1,0 +1,81 @@
+---
+import SectionLabel from "./SectionLabel.astro";
+
+const step =
+  "flex flex-col gap-3.5 border-dashed border-line-strong py-5.5 not-first:border-t first:pt-0 last:pb-0 " +
+  "lg:justify-between lg:gap-5.5 lg:rounded-20 lg:border lg:border-solid lg:border-line-soft lg:bg-surface-muted lg:p-6.5 lg:first:pt-6.5 lg:last:pb-6.5";
+const stepText = "font-serif text-step font-medium lg:text-step-lg";
+const field = "rounded-10 bg-bg px-2.25 py-2 lg:border lg:border-line-soft lg:bg-surface lg:px-2.5 lg:py-2.25";
+const fieldValue = "mt-0.5 text-13 text-ink lg:text-14";
+const barWide = "h-2 rounded-4";
+const barNarrow = "h-1.5 rounded-3";
+---
+
+<section class="border-y border-line bg-surface" aria-labelledby="how-title">
+  <div class="page-container flex flex-col gap-7 py-14 lg:gap-9 lg:py-16">
+    <SectionLabel id="how-title">Как это работает</SectionLabel>
+    <ol class="flex flex-col lg:grid lg:grid-cols-6 lg:gap-4">
+      <li class:list={[step, "lg:col-span-2"]}>
+        <p class={stepText}>Один список всех, кого вы знаете лично</p>
+        <div
+          class="flex flex-col rounded-14 border border-line-soft bg-surface-muted p-1.5 text-14 lg:bg-surface"
+          aria-hidden="true"
+        >
+          <div class="rounded-10 bg-note px-2.75 py-2.25 font-semibold">Анна Соколова</div>
+          <div class="px-2.75 py-2.25">Ирина Ким</div>
+          <div class="px-2.75 py-2.25">Михаил Орлов</div>
+        </div>
+      </li>
+
+      <li class:list={[step, "lg:col-span-2"]}>
+        <p class={stepText}>В карточке - кто это, откуда знакомы, телефон и почта</p>
+        <div class="grid grid-cols-3 gap-1.5 text-11 text-subtle lg:text-12" aria-hidden="true">
+          <div class={field}>Откуда<div class={fieldValue}>Казань</div></div>
+          <div class={field}>Телефон<div class={fieldValue}>+7 912 ···</div></div>
+          <div class={field}>Почта<div class={fieldValue}>anna@…</div></div>
+        </div>
+      </li>
+
+      <li class:list={[step, "lg:col-span-2"]}>
+        <p class={stepText}>После разговора - заметка в карточку, пара строк</p>
+        <div class="rounded-12 bg-note px-3.5 py-3 text-memo text-note-text" aria-hidden="true">
+          <div class="mb-0.75 text-12 leading-normal text-accent-text">Вчера, после звонка</div>
+          Пришлю статью про онбординг до пятницы.
+        </div>
+      </li>
+
+      <li class:list={[step, "lg:col-span-3"]}>
+        <p class={stepText}>Нужен человек - нашли по имени за секунду</p>
+        <div
+          class="flex h-11 items-center gap-2.5 rounded-12 border border-line bg-bg px-3.5 text-14 lg:h-12.5 lg:bg-surface lg:px-4 lg:text-15"
+          aria-hidden="true"
+        >
+          <span class="text-accent">⌕</span>Ан<span class="block h-4 w-0.5 bg-accent lg:h-4.5"></span>
+          <span class="ml-auto text-13 text-faint lg:text-14">Анна Соколова</span>
+        </div>
+      </li>
+
+      <li class:list={[step, "lg:col-span-3 lg:flex-row lg:items-end lg:gap-6"]}>
+        <p class:list={[stepText, "lg:max-w-step lg:self-start"]}>
+          Открывается с телефона и компьютера, данные одни и те же
+        </p>
+        <div class="flex h-23 items-end gap-2.5 lg:h-auto" aria-hidden="true">
+          <div
+            class="flex h-23 flex-1 flex-col gap-1.25 rounded-10 border border-line-strong bg-surface-muted p-2 lg:h-24 lg:w-37.5 lg:flex-none lg:gap-1.5 lg:bg-surface lg:p-2.25"
+          >
+            <div class:list={[barWide, "w-3/5 bg-line"]}></div>
+            <div class:list={[barWide, "w-4/5 bg-note"]}></div>
+            <div class:list={[barWide, "w-1/2 bg-line"]}></div>
+          </div>
+          <div
+            class="flex h-21 w-12 flex-col gap-1.25 rounded-10 border border-line-strong bg-surface-muted p-1.5 lg:h-22 lg:w-12.5 lg:bg-surface"
+          >
+            <div class:list={[barNarrow, "bg-line"]}></div>
+            <div class:list={[barNarrow, "bg-note"]}></div>
+            <div class:list={[barNarrow, "w-7/10 bg-line"]}></div>
+          </div>
+        </div>
+      </li>
+    </ol>
+  </div>
+</section>

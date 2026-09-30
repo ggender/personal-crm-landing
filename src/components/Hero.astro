@@ -1,0 +1,63 @@
+---
+import CtaButton from "./CtaButton.astro";
+import Glow from "./Glow.astro";
+import Logo from "./Logo.astro";
+---
+
+<section class="relative">
+  <Glow
+    class="top-130 left-10 h-115 w-130 lg:top-20 lg:left-1/2 lg:-ml-20 lg:h-190 lg:w-225"
+    strength={0.3}
+  />
+  <div class="page-container relative flex flex-col gap-5.5 pt-7 pb-14 lg:gap-10 lg:pt-6 lg:pb-18">
+    <header class="flex h-11 items-center justify-between lg:h-14">
+      <Logo />
+      <CtaButton size="sm" class="max-lg:hidden" />
+    </header>
+
+    <div
+      class="flex flex-col gap-5.5 lg:grid lg:grid-cols-[minmax(0,5fr)_minmax(0,6fr)] lg:items-center lg:gap-18"
+    >
+      <div class="flex flex-col gap-5.5 lg:gap-6">
+        <h1 class="mt-3.5 font-serif text-h1 font-medium text-balance lg:mt-0 lg:text-h1-lg">
+          Не теряйте людей, которых знаете <em class="text-accent">лично</em>
+        </h1>
+        <p class="text-lead text-muted lg:max-w-lead lg:text-lead-lg">
+          Все контакты и заметки о разговорах в одном месте: открыл, нашел человека, вспомнил, о чем
+          договорились
+        </p>
+        <CtaButton class="mt-1.5 lg:mt-2.5 lg:self-start" />
+      </div>
+
+      <div class="mt-1 flex flex-col gap-2.5 lg:mt-0 lg:gap-3" aria-hidden="true">
+        <div
+          class="flex h-11.5 items-center gap-2.5 rounded-14 border border-line bg-surface px-4 text-15 lg:h-14 lg:gap-3 lg:rounded-16 lg:px-5 lg:text-17"
+        >
+          <span class="text-accent">⌕</span>Миха<span class="block h-4.5 w-0.5 bg-accent lg:h-5"></span>
+        </div>
+
+        <div
+          class="flex flex-col gap-2.5 rounded-16 border border-line-strong bg-surface p-4 shadow-card lg:gap-3.5 lg:rounded-20 lg:px-6.5 lg:py-6 lg:shadow-card-lg"
+        >
+          <div class="flex items-baseline justify-between gap-2 lg:gap-3">
+            <div class="font-serif text-17 font-medium lg:text-26">Михаил Орлов</div>
+            <div class="text-12 text-faint lg:text-14">Работали в «Альфа»</div>
+          </div>
+          <div class="text-13 text-subtle lg:text-15">mikhail@orlov.ru · +7 903 ···</div>
+          <div
+            class="border-t border-dashed border-line-strong pt-2.5 text-memo text-note-text lg:pt-3.5 lg:text-memo-lg"
+          >
+            Обещал познакомить с CTO. Созвониться в ноябре.
+          </div>
+        </div>
+
+        <div
+          class="rounded-16 border border-line-soft bg-surface/55 px-4 py-3.5 opacity-70 lg:flex lg:items-baseline lg:justify-between lg:rounded-20 lg:px-6.5 lg:py-4.5"
+        >
+          <div class="font-serif text-16 font-medium lg:text-20">Михаил Жуков</div>
+          <div class="mt-0.75 text-13 text-faint lg:mt-0 lg:text-14">Тренер по бегу</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
