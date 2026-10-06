@@ -12,10 +12,11 @@ concurrency:
 
 env:
   DEPLOY_HOST: 188.120.242.151
-  DEPLOY_USER: crmapp
+  # Dedicated user for landing uploads; the app has its own deploy user.
+  DEPLOY_USER: landing-deploy
   # Public host key of the server, so the runner connects only to it.
-  DEPLOY_KNOWN_HOST: "188.120.242.151 ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIPJv+hbK84EOh3PugOOjMtjnoLK0psA3YG4/22XKHqu7"
-  SITE_URL: https://crm.vprod.app/
+  DEPLOY_KNOWN_HOST: "188.120.242.151 ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAINpBxS3bUofwZ6ehl3m2avhbJwr797VBr8Guc50Jr45h"
+  SITE_URL: https://vprodcrm.ru/
 
 jobs:
   deploy:
@@ -42,7 +43,7 @@ jobs:
           printf '%s\n' "$SSH_KEY" > ~/.ssh/deploy_key
           chmod 600 ~/.ssh/deploy_key
           printf '%s\n' "$DEPLOY_KNOWN_HOST" > ~/.ssh/known_hosts
-          # The key is locked on the server to rsync into /var/www/landing,
+          # The key is locked on the server to rsync uploads into /var/www/vprodcrm.ru,
           # so the destination path is relative to that folder.
           rsync -rtz --delete --chmod=D755,F644 \
             -e "ssh -i ~/.ssh/deploy_key -o IdentitiesOnly=yes" \
