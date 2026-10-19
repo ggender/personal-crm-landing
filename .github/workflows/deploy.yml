@@ -15,7 +15,7 @@ env:
   # Dedicated user for landing uploads; the app has its own deploy user.
   DEPLOY_USER: landing-deploy
   # Public host key of the server, so the runner connects only to it.
-  DEPLOY_KNOWN_HOST: "188.120.242.151 ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAINpBxS3bUofwZ6ehl3m2avhbJwr797VBr8Guc50Jr45h"
+  DEPLOY_KNOWN_HOST: "188.120.242.151 ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIJV5urLAsPLUYDlbrMAgefMq3qhl0tBjcr6zIFpXvZ1D"
   SITE_URL: https://vprodcrm.ru/
 
 jobs:
